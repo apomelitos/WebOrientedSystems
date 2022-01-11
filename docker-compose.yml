@@ -17,3 +17,17 @@ services:
     image: mongo:latest
     ports:
       - 27017:27017
+    volumes:
+      - mongodb_api:/data/db
+volumes:
+  mongodb_api:
+
+  # frontend:
+  #   build: ./frontend
+  #   container_name: frontend
+  #   command: npm run start
+  #   ports:
+  #     - 3000:3000
+  #   restart: unless-stopped
+  #   stdin_open: true
+  #   tty: true

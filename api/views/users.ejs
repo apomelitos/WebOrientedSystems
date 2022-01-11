@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users list</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    <form action="/users/add" method="POST">
+      <label for="firstName">
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="First name"
+        />
+      </label>
+      <label for="lastName">
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Last name"
+        />
+      </label>
+      <input type="submit" value="Add user" />
+    </form>
+    <h1>Users list:</h1>
+    <ul>
+      <% users.forEach(user => { %>
+      <li>
+        <div><%= user.firstName %></div>
+        <div><%= user.lastName %></div>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
