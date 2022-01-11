@@ -19,15 +19,26 @@ services:
       - 27017:27017
     volumes:
       - mongodb_api:/data/db
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: docker-frontend
+    command: serve -s build -l 3000
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+  nginx:
+    image: nginx:1-alpine
+    container_name: websystem-docker-demo
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.prod.conf/:/etc/nginx/conf.d/
+    links:
+      - frontend
+
 volumes:
   mongodb_api:
-
-  # frontend:
-  #   build: ./frontend
-  #   container_name: frontend
-  #   command: npm run start
-  #   ports:
-  #     - 3000:3000
-  #   restart: unless-stopped
-  #   stdin_open: true
-  #   tty: true
